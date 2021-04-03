@@ -16,7 +16,11 @@ dependencies:
   http_parser: ^3.1.3
   js: ^0.6.2
   location_platform_interface:
-    path: ../location_platform_interface
+    git:
+      url: git@github.com:darkstarx/flutterlocation.git
+      path: location_platform_interface
+      ref: v3.2.5
+    # path: ../location_platform_interface
   meta: ^1.1.8
 
 dev_dependencies:

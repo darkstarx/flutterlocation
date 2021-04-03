@@ -136,4 +136,16 @@ class MethodChannelLocation extends LocationPlatform {
         .receiveBroadcastStream()
         .map<LocationData>((dynamic element) => LocationData.fromMap(Map<String, double>.from(element)));
   }
+
+  /// Request to see if you should show a rationale for requesting permission.
+  ///
+  /// This method is only implemented on Android, calling this on other
+  /// platforms always returns [false].
+  @override
+  Future<bool> shouldShowRequestPermissionRationale() async {
+    if (!Platform.isAndroid) {
+      return false;
+    }
+    return await _methodChannel.invokeMethod('shouldShowRequestPermissionRationale');
+  }
 }

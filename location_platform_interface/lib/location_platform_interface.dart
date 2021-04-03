@@ -1,5 +1,7 @@
 library location_platform_interface;
 
+import 'dart:io';
+
 import 'package:flutter/foundation.dart';
 import 'package:flutter/services.dart';
 import 'package:meta/meta.dart';
@@ -95,6 +97,14 @@ class LocationPlatform extends PlatformInterface {
   ///
   /// Throws an error if the app has no permission to access location.
   Stream<LocationData> get onLocationChanged {
+    throw UnimplementedError();
+  }
+
+  /// Request to see if you should show a rationale for requesting permission.
+  ///
+  /// This method is only implemented on Android, calling this on other
+  /// platforms always returns [false].
+  Future<bool> shouldShowRequestPermissionRationale() {
     throw UnimplementedError();
   }
 }

@@ -84,4 +84,12 @@ class Location {
   Stream<LocationData> get onLocationChanged {
     return LocationPlatform.instance.onLocationChanged;
   }
+
+  /// Request to see if you should show a rationale for requesting permission.
+  ///
+  /// This method is only implemented on Android, calling this on other
+  /// platforms always returns [false].
+  Future<bool> shouldShowRequestPermissionRationale() {
+    return LocationPlatform.instance.shouldShowRequestPermissionRationale();
+  }
 }

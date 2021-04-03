@@ -123,8 +123,10 @@
     } else if ([call.method isEqualToString:@"hasPermission"]) {
         if ([self isPermissionGranted]) {
             result([self isHighAccuracyPermitted] ? @1 : @3);
-        } else {
+        } else if ([CLLocationManager authorizationStatus] == kCLAuthorizationStatusNotDetermined) {
             result(@0);
+        } else {
+            result(@2);
         }
     } else if ([call.method isEqualToString:@"requestPermission"]) {
         if ([self isPermissionGranted]) {
@@ -213,7 +215,7 @@
 -(BOOL) isPermissionGranted {
     BOOL isPermissionGranted = NO;
     CLAuthorizationStatus status = [CLLocationManager authorizationStatus];
-    
+
 #if TARGET_OS_OSX
     if (status == kCLAuthorizationStatusAuthorized) {
         // Location services are available
@@ -242,7 +244,7 @@
     } else {
         isPermissionGranted = NO;
     }
-    
+
     return isPermissionGranted;
 }
 

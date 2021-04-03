@@ -55,6 +55,9 @@ final class MethodCallHandlerImpl implements MethodCallHandler {
             case "enableBackgroundMode":
                 enableBackgroundMode(call, result);
                 break;
+            case "shouldShowRequestPermissionRationale":
+                result.success(location.shouldShowRequestPermissionRationale());
+                break;
             default:
                 result.notImplemented();
                 break;
